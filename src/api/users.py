@@ -12,7 +12,7 @@ router = APIRouter(
     path='/v1/user',
     status_code=status.HTTP_201_CREATED,
     summary='Добавить вопросы',
-    description='Добавляет заданное количество вопросов',
+    description='Добавляет заданное количество вопросов в бд',
 )
 async def add_answer(
     num: StatsAddV1,
