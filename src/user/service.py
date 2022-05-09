@@ -31,15 +31,14 @@ class UserService:
         all_id_answers = get_all_id_answers()
 
         async def check_and_push_answer(counts):
-            count = 0
+
             github = Jservice(self._engine)
             all_stats_rep = await github.get_answer_from_jservice(counts)
 
             for stats_rep in all_stats_rep:
-                if (stats_rep.id not in all_id_answers) and (count < counts):
+                if stats_rep.id not in all_id_answers:
                     github.push_answer_in_database(stats_rep)
                     id_answer = stats_rep.id
-                    count += 1
                 else:
                     await check_and_push_answer(1)
             if 'id_answer' not in locals():
